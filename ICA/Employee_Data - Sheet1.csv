@@ -1,7 +1,7 @@
-Employee Id,Department,Average montly hours,Average daily hours,Stressful days in week
-1,HR,157,7,0
-2,Development,262,12,3
-3,Development,272,14,4
-4,Testing,223,14,4
-5,Development,159,7,0
-6,Testing,238,10,2
+Employee Id,Average montly hours,Average daily hours,Stressful days in week
+1,157,7,0
+2,262,12,3
+3,272,14,4
+4,223,14,4
+5,159,7,0
+6,238,10,2

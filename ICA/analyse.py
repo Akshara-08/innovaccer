@@ -10,12 +10,45 @@ print(d)
 desc = data.describe()
 print(desc)
 
-features=['Average montly hours','Average daily hours','Stressful days in week','Department']
-fig=plt.subplots(figsize=(10,15))
-for i, j in enumerate(features):
-    plt.subplot(4, 2, i+1)
-    plt.subplots_adjust(hspace = 1.0)
-    sns.countplot(x=j,data = data)
-    plt.xticks(rotation=90)
-    plt.title("Employee")
-    plt.show()
+inf0 = data.info()
+print(data.isna().sum())
+d1=data
+plt.boxplot(d1['Average montly hours'])
+plt.title("Box plot")
+plt.show()
+
+plt.boxplot(d1['Average daily hours'])
+plt.title("Box plot")
+plt.show()
+
+sns.pairplot(data)
+plt.show()
+
+data.describe()
+print(data.describe())
+
+from sklearn.cluster import KMeans
+kmeans=KMeans(n_clusters=3)
+kmeans.fit(data)
+label = kmeans.predict(data)
+print(data)
+
+dailyHours = data['Average daily hours']
+monthlyHours = data['Average montly hours']
+plt.scatter(dailyHours,monthlyHours, c=label)
+plt.show()
+
+from sklearn.metrics import silhouette_score
+kmeans_score = silhouette_score(data, kmeans.labels_, metric='euclidean')
+print('Silhouette Score: %.3f' % kmeans_score)
+
+wcss = []
+for i in range(1,7):
+    kmeans = KMeans(n_clusters = i, init = 'k-means++', random_state = 42)
+    kmeans.fit(data)
+    wcss.append(kmeans.inertia_)
+plt.plot(range(1,7),wcss,'-o')
+plt.title('Elbow method')
+plt.xlabel('No. of clusters')
+plt.ylabel('WCSS Value')
+plt.show()

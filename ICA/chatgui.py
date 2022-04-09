@@ -66,7 +66,7 @@ def chatbot_response(msg):
     return res
 
 def some_job():
-    base.after(600,detect_mouse(win32api.GetCursorPos(),win32api.GetCursorPos(),0))
+    # base.after(600,detect_mouse(win32api.GetCursorPos(),win32api.GetCursorPos(),0))
     msg = EntryBox.get("1.0",'end-1c').strip()
     EntryBox.delete("0.0",END)
     if(msg):
@@ -79,7 +79,7 @@ def some_job():
     ChatLog.insert(END, "Bot: " + 'Hey, What about a short break since you are working for long time. Stretch and drink some water' + '\n\n')
     ChatLog.config(state=DISABLED)
     ChatLog.yview(END)
-    #base.after(3600000,some_job);
+    base.after(3600000,some_job);
 
 def detect_mouse(curpos, savedpos, count):
     if savedpos != curpos:
@@ -92,7 +92,7 @@ def detect_mouse(curpos, savedpos, count):
             ChatLog.insert(END, "Bot: " + 'Hey, What about a short break since you are working for long time. Stretch and drink some water' + '\n\n')
             ChatLog.config(state=DISABLED)
             ChatLog.yview(END)
-    base.after(6000,detect_mouse(win32api.GetCursorPos(),savedpos,count))
+    # base.after(6000,detect_mouse(win32api.GetCursorPos(),savedpos,count))
     
 #Creating GUI with tkinter
 import tkinter
@@ -143,5 +143,5 @@ scrollbar.place(x=376,y=6, height=386)
 ChatLog.place(x=6,y=6, height=386, width=370)
 EntryBox.place(x=128, y=401, height=90, width=265)
 SendButton.place(x=6, y=401, height=90)
-base.after(3600,some_job);
+base.after(3600000,some_job);
 base.mainloop();
